@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="../libs/common.css">
+</head>
+
+<body>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <div class="container-fluid">
+        <h3 class="wq-title">
+            <span class="logo">
+				<img src="https://s02.mifile.cn/assets/static/image/mi-logo.png" alt="">
+			</span>小米手机信息
+            <button type="button" class="btn" data-toggle="modal" data-target=".wq-add">
+				<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                添加手机
+			</button>
+        </h3>
+        <!-- 添加手机部分 -->
+        <div class="modal fade wq-add">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <!--细节划分-->
+                    <h4>请填写手机信息:</h4>
+                    <div class="form-group">
+                        <label for="wq-content">手机名称</label>
+                        <input type="text" class="form-control" id="wq-content" placeholder="手机名称" value="手机名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="wq-where">价格</label>
+                        <textarea id="wq-where" class="form-control" rows="2" placeholder="价格" value="价格"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">详细信息</label>
+                        <textarea id="wq-idea" class="form-control" rows="2" placeholder="详细信息" value="请输入详细信息"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-success" data-dismiss="modal" id="wq-save-question">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--手机列表表格-->
+        <div class="row">
+            <table class="table table-bordered table-hover wq-main-table ">
+
+                <thead>
+                    <tr>
+                        <th class="col-md-1 text-center">id</th>
+                        <th class="col-md-3 text-center">商品名称</th>
+                        <th class="col-md-3 text-center">商品价格</th>
+                        <th class="col-md-3 text-center">详细信息</th>
+                        <th class="col-md-1 text-center">删除</th>
+                        <th class="col-md-1 text-center">修改</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+
+                    <!--<tr class="text-center middle">
+						<td>**索引**</td>
+						<td>**标题**</td>
+						<td>**副标题**</td>
+						<td>
+							<a 
+								href="#" 
+								data-toggle="popover"
+								data-content="**过长内容详情(bootstrap会处理点击显示)**" 
+							>**过长隐藏内容**
+							</a>
+						</td>
+						<td>
+							<button class="btn delBtn">删除</button>
+						</td>
+						<td>
+							<button class="btn">
+								<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+							</button>
+						</td>
+					</tr>-->
+
+
+                </tbody>
+            </table>
+        </div>
+        <!-- <div class="row text-center">
+            <ul class="pagination">
+                <li><a href="#">&laquo;</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&raquo;</a></li>
+            </ul>
+        </div> -->
+    </div>
+    <script>
+        //json-server -w productDatas.json 创建服务器
+        axios.get("http://localhost:3000/products").then(res => {
+            let str = "";
+            for (let i = 0; i < res.data.length; i++) {
+                str += `
+                <tr class="text-center middle">
+						<td>${res.data[i].id}</td>
+						<td>${res.data[i].title}</td>
+						<td>${res.data[i].price}</td>						
+						<td>
+							<a 
+								href="#" 
+								data-toggle="popover"
+								data-content="**过长内容详情(bootstrap会处理点击显示)**" 
+							>${res.data[i].particulars}
+							</a>
+						</td>
+						<td>
+							<button class="btn delBtn" data-id="${res.data[i].id}">删除</button>
+						</td>
+						<td>
+							<button class="btn">
+								<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+							</button>
+						</td>
+					</tr>
+                `;
+            }
+            tbody.innerHTML = str;
+        });
+        // axios.post("http://localhost:3000/products", {
+        //         title: "商品三",
+        //         price: 300,
+        //         particulars: "Redmi9A 大字体,大音量,大电池"
+        //     }).then(res => {
+        //         console.log(res);
+        //     }).catch(err => {
+        //         console.log(err)
+        //     })
+        // axios.put("http://localhost:3000/products/3", {
+        //     title: "shangpin3",
+        //     price: 300
+        // });
+        // axios.patch("http://localhost:3000/products/3", {
+
+        //     price: 400
+        // });
+        // axios.delete("http://localhost:3000/products/5");
+    </script>
+    <script src="../libs/jquery.1.11.3.js"></script>
+    <script src="../libs/bootstrap.js"></script>
+</body>
+
+</html>
