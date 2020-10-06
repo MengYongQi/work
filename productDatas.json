@@ -1,27 +1,52 @@
 {
-    "products": [{
-            "id": 1,
-            "title": "redmiK20",
-            "price": 1999,
-            "particulars": "Redmi K20 升降摄像头"
-        },
-        {
-            "id": 2,
-            "title": "redmiK20pro",
-            "price": 2499,
-            "particulars": "Redmi K20PRO 拍照美"
-        },
-        {
-            "title": "redmiNote7",
-            "price": 1399,
-            "id": 3,
-            "particulars": "RedmiNote7 第五代康宁大猩猩屏幕"
-        },
-        {
-            "title": "redmi9A",
-            "price": 888,
-            "id": 4,
-            "particulars": "Redmi9A 大字体,大音量,大电池"
-        }
-    ]
+  "products": [
+    {
+      "id": 1,
+      "title": "redmiK20",
+      "price": 1999,
+      "particulars": "Redmi K20 升降摄像头"
+    },
+    {
+      "id": 2,
+      "title": "redmiK20pro",
+      "price": 2499,
+      "particulars": "Redmi K20PRO 拍照美"
+    },
+    {
+      "title": "redmiNote7",
+      "price": 1399,
+      "id": 3,
+      "particulars": "RedmiNote7 第五代康宁大猩猩屏幕"
+    },
+    {
+      "title": "redmi9A",
+      "price": 888,
+      "id": 4,
+      "particulars": "Redmi9A 大字体,大音量,大电池"
+    },
+    {
+      "title": "小米10",
+      "price": "5999",
+      "particulars": "一亿鹰眼摄像，更大光圈，拍照更美",
+      "id": 5
+    },
+    {
+      "title": "redmi10X",
+      "price": "1999",
+      "particulars": "大电池",
+      "id": 6
+    },
+    {
+      "title": "redmi9",
+      "price": "698",
+      "particulars": "大电池，打赏",
+      "id": 7
+    },
+    {
+      "title": "手机名称",
+      "price": "1",
+      "particulars": "1",
+      "id": 8
+    }
+  ]
 }
