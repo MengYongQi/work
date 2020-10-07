@@ -37,16 +37,16 @@
       "id": 6
     },
     {
-      "title": "redmi9",
-      "price": "698",
-      "particulars": "大电池，打赏",
-      "id": 7
+      "title": "小米10",
+      "price": "3999",
+      "particulars": "前置摄像",
+      "id": 9
     },
     {
-      "title": "手机名称",
-      "price": "1",
-      "particulars": "1",
-      "id": 8
+      "title": "小米mix3",
+      "price": "3299",
+      "particulars": "滑盖屏",
+      "id": 10
     }
   ]
 }
