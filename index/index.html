@@ -31,7 +31,7 @@
                     <h4>请填写手机信息:</h4>
                     <div class="form-group">
                         <label for="wq-content">手机名称</label>
-                        <input type="text" autocomplete="off" class="form-control" id="title" placeholder="手机名称" value="手机名称">
+                        <input type="text" autocomplete="off" class="form-control" id="title" placeholder="小米手机">
                     </div>
                     <div class="form-group">
                         <label for="wq-where">价格</label>
@@ -122,8 +122,7 @@
 								href="#" 
 								data-toggle="popover"
 								data-content="**过长内容详情(bootstrap会处理点击显示)**" 
-                                class="xiangqing">${res.data[i].particulars}
-							</a>
+                                class="xiangqing">${res.data[i].particulars}</a>
 						</td>
 						<td>
 							<button type="button" class="btn btn-danger glyphicon glyphicon-trash" data-id="${res.data[i].id}"></button>
@@ -140,29 +139,40 @@
 
 
                 //删除商品模块
-                let aBtns = document.querySelectorAll(".btn-danger");
-                for (let i = 0; i < aBtns.length; i++) {
-                    aBtns[i].onclick = function() {
-                        let id = aBtns[i].getAttribute("data-id");
-                        axios.delete(`http://localhost:3000/products/${id}`).then(res => {
-                            location.reload();
-                        });
-                    }
+                // let aBtns = document.querySelectorAll(".btn-danger");
+                // for (let i = 0; i < aBtns.length; i++) {
+                //     aBtns[i].onclick = function() {
+                //         let id = aBtns[i].getAttribute("data-id");
+                //         axios.delete(`http://localhost:3000/products/${id}`).then(res => {
+                //             location.reload();
+                //         });
+                //     }
 
-                }
+                // }
+                let aBtns = $(".btn-danger");
 
-                // let phone = $("#phone");
-                // let prices = $("#price2");
-                // let details = $("#Details");
-                // let revise = $("#revise");
-                // let xiuGai = $(".btn-primary");
-                // let name = $(".name");
-                // let xiangQing = $(".xiangqing");
-                // let jiaGe = $(".jiage");
+                aBtns.click(function() {
+                    let id = $(this).attr("data-id");
+                    axios.delete(`http://localhost:3000/products/${id}`).then(res => {
+                        location.reload();
+                    });
+                })
+
+
+
+
+
+                // let phone = document.getElementById("phone");
+                // let prices = document.getElementById("price2");
+                // let details = document.getElementById("Details");
+                // let revise = document.getElementById("revise");
+                // let xiuGai = document.querySelectorAll(".btn-primary");
+                // let name = document.querySelectorAll(".name");
+                // let xiangQing = document.querySelectorAll(".xiangqing");
+                // let jiaGe = document.querySelectorAll(".jiage");
                 // for (let j = 0; j < xiuGai.length; j++) {
                 //     xiuGai[j].onclick = function() {
-                //         phone.val() = name[j].innerText;
-                //         console.log(phone.val());
+                //         phone.value = name[j].innerText;
                 //         prices.value = jiaGe[j].innerText;
                 //         details.value = xiangQing[j].innerText;
                 //         revise.onclick = function() {
@@ -179,33 +189,28 @@
 
                 // }
 
-                // for (let j = 0; j < $(".btn-primary").length; j++) {
-                //     $(".btn-primary").click(function() {
-                //         let id = $(this).index();
-                //         $("#phone").val($(".name").html());
-                //         $("#price2").val($(".jiage").html());
-                //         $("#Details").val($(".xiangqing").html());
-                //         $("#revise").click(function() {
-                //             let id = $(".btn-primary").getAttribute("data-id");
-                //             axios.put("http://localhost:3000/products/" + id, {
-                //                 title: $("#phone").val($(".name").html()),
-                //                 price: $("#price2").val($(".jiage").html()),
-                //                 particulars: $("#Details").val($(".xiangqing").html())
 
-                //             });
-                //             location.reload();
-                //         })
-                //     })
+                $(".btn-primary").click(function() {
+                    $("#phone").val($(this).parent().parent().find(".name").text());
+                    $("#price2").val($(this).parent().parent().find(".jiage").text());
+                    $("#Details").val($(this).parent().parent().find(".xiangqing").html().trim());
+                    let id = $(this).attr("data-id");
+                    $("#revise").click(function() {
+                        axios.put("http://localhost:3000/products/" + id, {
+                            title: $("#phone").val(),
+                            price: $("#price2").val(),
+                            particulars: $("#Details").val()
 
-                //     // }
+                        });
+                        location.reload();
+                    })
+                })
+
 
 
             });
             //添加商品模块
-
-            // let tianjia = $("#tianjia");
             $("#tianjia").click(function() {
-
                 axios.post("http://localhost:3000/products", {
                     title: $("#title").val(),
                     price: $("#price").val(),
@@ -216,8 +221,6 @@
                     alert("添加失败");
                 })
                 location.reload();
-
-
             })
 
             // axios.post("http://localhost:3000/products", {
